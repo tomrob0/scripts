@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor.SceneManagement;
 
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public GameObject northExit;
     public GameObject southExit;
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.turnOffExits();
+        
         
 
 
@@ -76,31 +76,7 @@ public class Player : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {   
-        if(other.CompareTag("door"))
-        {
-            EditorSceneManager.LoadScene("Scene 1");
-        }
-        else if(other.CompareTag("middleOfTheRoom") && !MySingleton.currentDirection.Equals("?") )
-        {
-                print("in middle of the room");
-                this.amAtMiddleOfRoom = true;
-
-        }
-    
-    
-
-
-
-
-
-
-
-
-
-
-        
-    
+    {       
         print(other.tag);
         if(other.CompareTag("door"))
         {
