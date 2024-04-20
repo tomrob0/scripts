@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
         //disable the middle collider until we know what our initial state will be
         //it should already be disabled by default, but for clarity, lets do it here
-        
+        this.middleOfTheRoom.SetActive(false);
 
         if (!MySingleton.currentDirection.Equals("?"))
         {
@@ -110,7 +111,13 @@ public class PlayerController : MonoBehaviour
 
             EditorSceneManager.LoadScene("Scene 1");
         }
-      
+        else if(other.CompareTag("power-pellet"))
+        {
+            other.gameObject.SetActive(false); //make pellet disappear
+            Room theCurrentRoom = MySingleton.thePlayer.getCurrentRoom();
+            theCurrentRoom.removePellet(MySingleton.currentDirection);
+        }
+        
         else if(other.CompareTag("middleOfTheRoom") && !MySingleton.currentDirection.Equals("?"))
         {
             //we have hit the middle of the room, so lets turn off the collider
@@ -125,7 +132,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            print("spomethilskdfjskldjfsdjkl");
+            print("**");
         }
     }
 
