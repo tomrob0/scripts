@@ -113,15 +113,23 @@ public class PlayerController : MonoBehaviour
         }
         else if(other.CompareTag("power-pellet"))
         {
+            EditorSceneManager.LoadScene("FightScene");
+
             other.gameObject.SetActive(false); //make pellet disappear
-            Room theCurrentRoom = MySingleton.thePlayer.getCurrentRoom();
-            theCurrentRoom.removePellet(MySingleton.currentDirection);
+
+            Room theCurrentRoom = MySingleton.thePlayer.getCurrentRoom();    
+            theCurrentRoom.removePellet(other.GetComponent<pelletController>().direction);
+            
+
+        
         }
         
         else if(other.CompareTag("middleOfTheRoom") && !MySingleton.currentDirection.Equals("?"))
         {
             //we have hit the middle of the room, so lets turn off the collider
             //until the next run of the scene to avoid additional collisions
+
+
             this.middleOfTheRoom.SetActive(false);
             this.turnOnExits();
 

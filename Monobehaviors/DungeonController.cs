@@ -13,8 +13,7 @@ public class DungeonController : MonoBehaviour
       this.setPellets();
     }
 
-    //all doors are on by default, so turn off the doors that should not be there.
-    private void setDoors()
+        private void setDoors()
     {
         Room theCurrentRoom = MySingleton.thePlayer.getCurrentRoom();
         if (theCurrentRoom.hasExit("north"))
@@ -39,7 +38,7 @@ public class DungeonController : MonoBehaviour
         }
     }
 
-    //all pellets are on by default, so turn off the ones that shouldnt be there
+    
     private void setPellets()
     {
         Room theCurrentRoom = MySingleton.thePlayer.getCurrentRoom();

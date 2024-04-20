@@ -2,13 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MySingleton
 {
     public static string currentDirection = "?";
-    public static Player thePlayer ;
+    public static Player thePlayer;
     public static Dungeon theDungeon = MySingleton.generateDungeon();
+   
 
+    public static string flipDirection(string direction)
+    {
+        if(direction.Equals("north"))
+        {
+            return "south";
+        }
+        else if(direction.Equals("south")) 
+        {
+            return "north";
+        }
+        else if(direction.Equals("east")) 
+        {
+            return "west";
+        }
+        else if(direction.Equals("west")) 
+        {
+            return "east";
+        }
+        else 
+        {
+            Debug.Log("not legal direction inside of MySingleton");
+            return "na";
+        }
+    }
     private static Dungeon generateDungeon()
+    
+    
     {
         Room r1 = new Room("R1");
         Room r2 = new Room("R2");

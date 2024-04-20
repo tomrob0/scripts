@@ -83,14 +83,7 @@ public class Room
         }
         else if (direction.Equals("south"))
         {
-            if (this.southPellet != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return this.southPellet != null;
         }
         else if (direction.Equals("east"))
         {
