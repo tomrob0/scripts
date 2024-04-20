@@ -24,6 +24,6 @@ public class Dungeon
     public void addPlayer(Player thePlayer)
     {
         this.thePlayer = thePlayer;
-        this.startRoom.addPlayer(thePlayer);
+        this.startRoom.addPlayer(this.thePlayer);
     }
 }

@@ -6,7 +6,6 @@ public class MySingleton
 {
     public static string currentDirection = "?";
     public static Player thePlayer ;
-    public static Room theCurrentRoom = null;
     public static Dungeon theDungeon = MySingleton.generateDungeon();
 
     private static Dungeon generateDungeon()
