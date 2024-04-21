@@ -20,7 +20,7 @@ public class fightController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {       
-
+        
             this.theMonster = new Monster("Pinky");
             this.fightCommentaryTMP.text ="";
 
@@ -40,6 +40,8 @@ public class fightController : MonoBehaviour
 
       StartCoroutine(fight());
     }
+
+   
     private void tryAttack(Inhabitant attacker, Inhabitant defender)
     {
         this.fightCommentaryTMP.text ="";
@@ -126,6 +128,15 @@ public class fightController : MonoBehaviour
 
 
        }
-            
+        
+        if(isFightOver&& Input.GetKeyUp(KeyCode.Escape))
+        {
+            EditorSceneManager.LoadScene("Shop");
+
+        }
+        
+
+
     }
+
 }
