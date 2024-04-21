@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.SceneManagement;
 
 public class fightController : MonoBehaviour
 {
+
+    private bool isFightOver = false;
     public GameObject hero_GO, monster_GO;
     public TextMeshPro hero_hp_TMP, monster_hp_TMP;
     private GameObject currentAttacker;
@@ -80,7 +83,8 @@ public class fightController : MonoBehaviour
                 this.fightCommentaryTMP.fontSize = 20;
                 this.fightCommentaryTMP.color = Color.green;
                 this.fightCommentaryTMP.text ="Hero Won!!";
-
+                MySingleton.currentPellets++;
+                this.isFightOver= true;
                 this.shouldAttack = false;
             }
             else
@@ -101,6 +105,7 @@ public class fightController : MonoBehaviour
                 this.fightCommentaryTMP.fontSize = 20;
                 this.fightCommentaryTMP.color = Color.black;
                 this.fightCommentaryTMP.text ="Monster Won!!";
+                this.isFightOver= true;
                 this.shouldAttack = false;
             }
            else
@@ -114,6 +119,13 @@ public class fightController : MonoBehaviour
     }
     void Update()
     {
-       
+       if(isFightOver && Input.GetKeyUp(KeyCode.Space))
+       {
+        MySingleton.thePlayer.resetStats();
+        EditorSceneManager.LoadScene("Scene 1");
+
+
+       }
+            
     }
 }

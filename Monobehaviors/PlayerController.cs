@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.SceneManagement;
+using TMPro;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,9 +13,12 @@ public class PlayerController : MonoBehaviour
     public GameObject eastExit;
     public GameObject westExit;
     public GameObject middleOfTheRoom;
+    public TextMeshPro pellet_TMP;
+
     private float speed = 5.0f;
     private bool amMoving = false;
     private bool amAtMiddleOfRoom = false;
+    
 
     private void turnOffExits()
     {
@@ -35,6 +40,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        this.pellet_TMP.text = "" + MySingleton.currentPellets;
         //Rigidbody rb = this.gameObject.GetComponent<Rigidbody>();
 
         //disable all exits when the scene first loads

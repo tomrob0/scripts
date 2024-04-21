@@ -13,6 +13,8 @@ public class Player : Inhabitant
         this.currentRoom = null;
 
     }
-
-    
+    public void resetStats()
+    {
+        this.hp=this.maxHP;
+    }
 }

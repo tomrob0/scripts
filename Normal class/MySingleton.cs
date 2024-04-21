@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MySingleton
 {
+
+    public static int currentPellets = 0;
     public static string currentDirection = "?";
     public static Player thePlayer;
     public static Dungeon theDungeon = MySingleton.generateDungeon();
