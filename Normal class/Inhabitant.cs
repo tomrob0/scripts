@@ -24,6 +24,7 @@ public abstract class Inhabitant
         return this.currentRoom;
     }
 
+
     public void setCurrentRoom(Room r)
     {
         this.currentRoom = r;
@@ -33,6 +34,23 @@ public abstract class Inhabitant
     {
         this.hp = this.hp-damage;
     }
+ 
+    public void addHP(int numHP)
+    {
+        if(numHP > 0)
+        {
+            this.hp += numHP;
+        }
+
+        //dont allow overhealing past maxHP
+        if(this.hp> this.maxHP)
+        {
+            this.hp= this.maxHP;
+        }
+    }    
+
+
+    
     public int getHP()
     {
        return this.hp; 
@@ -41,4 +59,7 @@ public abstract class Inhabitant
     {
        return this.ac;
     }
+
+
 }
+
