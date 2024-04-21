@@ -11,11 +11,17 @@ public class fightController : MonoBehaviour
     private Animator theCurrentAnimator;
     private Monster theMonster;
     private bool shouldAttack = true ;
+    private AudioSource attackSound;
+    public TextMeshPro fightCommentaryTMP;
 
     // Start is called before the first frame update
     void Start()
-    {
+    {       
+
             this.theMonster = new Monster("Pinky");
+            this.fightCommentaryTMP.text ="";
+
+            this.attackSound = this.gameObject.GetComponent<AudioSource>();
             this.hero_hp_TMP.text = "Current HP:" + MySingleton.thePlayer.getHP() + "  AC:"+ MySingleton.thePlayer.getAC();
             this.monster_hp_TMP.text = "Current HP:" + this.theMonster.getHP() + "  AC:"+ this.theMonster.getAC();
           int num = Random.Range(0,2); //who attacks first(flip coin)
@@ -33,17 +39,23 @@ public class fightController : MonoBehaviour
     }
     private void tryAttack(Inhabitant attacker, Inhabitant defender)
     {
+        this.fightCommentaryTMP.text ="";
         int attackRoll = Random.Range(0,20)+1;
         if(attackRoll>= defender.getAC())
         {
             int damageRoll = Random.Range(0,4)+3;
             defender.takeDamage(damageRoll);
+            this.fightCommentaryTMP.color = Color.red;
+            this.fightCommentaryTMP.text ="*HIT for "+ damageRoll+ "*";
+            
+            this.attackSound.Play();
 
 
         }
         else
         {
-            print("attacker missed");
+            this.fightCommentaryTMP.color = Color.magenta;
+            this.fightCommentaryTMP.text ="Attack Missed!!";
         }
 
     }
@@ -51,7 +63,7 @@ public class fightController : MonoBehaviour
 
         IEnumerator fight()
     {   
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
          if(this.shouldAttack)
         {
             this.theCurrentAnimator = this.currentAttacker.GetComponent<Animator>();
@@ -64,7 +76,11 @@ public class fightController : MonoBehaviour
 
             if(this.theMonster.getHP() <=0)
             {
-                print("Hero Wins!!!");
+                this.monster_GO.transform.Rotate(-90,0,0);
+                this.fightCommentaryTMP.fontSize = 20;
+                this.fightCommentaryTMP.color = Color.green;
+                this.fightCommentaryTMP.text ="Hero Won!!";
+
                 this.shouldAttack = false;
             }
             else
@@ -80,8 +96,11 @@ public class fightController : MonoBehaviour
             this.hero_hp_TMP.text = "Current HP:" + MySingleton.thePlayer.getHP() + "  AC:"+ MySingleton.thePlayer.getAC();
             
             if(MySingleton.thePlayer.getHP() <=0)
-            {
-                print("Monster Wins!!!");
+            {   
+                this.hero_GO.transform.Rotate(-90,0,0);
+                this.fightCommentaryTMP.fontSize = 20;
+                this.fightCommentaryTMP.color = Color.black;
+                this.fightCommentaryTMP.text ="Monster Won!!";
                 this.shouldAttack = false;
             }
            else
