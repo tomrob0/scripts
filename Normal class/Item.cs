@@ -21,6 +21,7 @@ public class Item
     public void display()
     {
         Debug.Log($"Name: {this.name},stat impacted: {this.stat_impacted}, Modifier: {this.modifier} ");
+        
     }
 
 

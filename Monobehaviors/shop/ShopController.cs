@@ -20,7 +20,7 @@ public class ShopController : MonoBehaviour
         this.item2TMP.text =""+ ItemsSingleton.appleItemCost;
         this.item3TMP.text =""+ ItemsSingleton.magiccherryItemCost;
 
-        this.readItemsData();
+        //this.readItemsData();
         string jsonString = this.readItemsDataJson();
 
         
@@ -28,6 +28,7 @@ public class ShopController : MonoBehaviour
         foreach (var item in root.items)
         {
             print($"Name: {item.name}, Stat Impacted: {item.stat_impacted}, Modifier: {item.modifier}");
+            
         }
 
     

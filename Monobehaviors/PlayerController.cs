@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool amMoving = false;
     private bool amAtMiddleOfRoom = false;
     
+    
 
     
     private void turnOffExits()
@@ -155,7 +156,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        
+
         if (Input.GetKeyUp(KeyCode.UpArrow) && !this.amMoving && MySingleton.thePlayer.getCurrentRoom().hasExit("north"))
         {
             this.amMoving = true;

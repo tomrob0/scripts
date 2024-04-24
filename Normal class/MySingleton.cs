@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
 
 
 public class MySingleton
@@ -11,6 +13,45 @@ public class MySingleton
     public static Player thePlayer;
     public static Dungeon theDungeon = MySingleton.generateDungeon();
    
+
+
+
+        public static string readJsonString()
+        {
+        string filePath = "Assets/data files/items_data_json.txt"; 
+        string answer = "";
+
+        
+        if (File.Exists(filePath))
+        {
+            try
+            {
+                
+               
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    string line;
+                    
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        answer = answer + line;
+                    }
+                    return answer;
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                return null;
+            }
+        }
+        else
+        {
+           
+            return null;
+         }
+        }
+
 
     public static string flipDirection(string direction)
     {

@@ -7,7 +7,7 @@ using UnityEditor.SceneManagement;
 public class fightController : MonoBehaviour
 {
 
-    private bool isFightOver = false;
+    public bool isFightOver = false;
     public GameObject hero_GO, monster_GO;
     public TextMeshPro hero_hp_TMP, monster_hp_TMP;
     private GameObject currentAttacker;
@@ -20,7 +20,7 @@ public class fightController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {       
-        
+
             this.theMonster = new Monster("Pinky");
             this.fightCommentaryTMP.text ="";
 
@@ -62,7 +62,7 @@ public class fightController : MonoBehaviour
             this.fightCommentaryTMP.color = Color.magenta;
             this.fightCommentaryTMP.text ="Attack Missed!!";
         }
-
+        
     }
     // Update is called once per frame
 
@@ -123,13 +123,14 @@ public class fightController : MonoBehaviour
     {
        if(isFightOver && Input.GetKeyUp(KeyCode.Space))
        {
+    
         MySingleton.thePlayer.resetStats();
         EditorSceneManager.LoadScene("Scene 1");
 
 
        }
         
-        if(isFightOver&& Input.GetKeyUp(KeyCode.Escape))
+        if(isFightOver && Input.GetKeyUp(KeyCode.Escape))
         {
             EditorSceneManager.LoadScene("Shop");
 
