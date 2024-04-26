@@ -103,7 +103,7 @@ public class Room
     
     public void removePlayer(string direction)
     {
-        Exit theExit = this.getExitGivenDirection(direction);
+        Exit theExit = getExitGivenDirection(direction);
         Room destinationRoom = theExit.getDestinationRoom();
         destinationRoom.addPlayer(this.currentPlayer);
         this.currentPlayer = null; 
